@@ -1,23 +1,9 @@
 package com.lincoln.skills.headfirstpatttern.status;
 
-public class SoldState implements State {
-
-	private SuperSugarMachine machine;
+public class SoldState extends State {
 
 	public SoldState(SuperSugarMachine machine) {
-		this.machine = machine;
-	}
-
-	public void insertQuarter() {
-		System.out.println("you have inserted a quarter.");
-	}
-
-	public void ejectQuarter() {
-		System.out.println("sorry you already turned the crank.");
-	}
-
-	public void turnCrank() {
-		System.out.println("turning twice doesn't get you another gumball.");
+		super(machine);
 	}
 
 	public void dispense() {

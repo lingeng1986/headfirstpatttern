@@ -1,8 +1,5 @@
 package com.lincoln.skills.headfirstpatttern.status;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 public class SuperSugarMachine {
 
 	private State state;
@@ -12,13 +9,13 @@ public class SuperSugarMachine {
 
 	public SuperSugarMachine(int size) {
 		this.size = size;
-		this.emptyState = new EmptyState();
-		this.hasQuarterState = new HasQuarterState(this);
-		this.noQuarterState = new NoQuarterState(this);
-		this.soldState = new SoldState(this);
-		this.winnerState = new WinnerState(this);
+		emptyState = new EmptyState(this);
+		hasQuarterState = new HasQuarterState(this);
+		noQuarterState = new NoQuarterState(this);
+		soldState = new SoldState(this);
+		winnerState = new WinnerState(this);
 		if (size > 0) {
-			this.state = noQuarterState;
+			state = noQuarterState;
 		}
 	}
 
@@ -38,16 +35,17 @@ public class SuperSugarMachine {
 	}
 
 	public void insertQuarter() {
-		this.state.insertQuarter();
+		state.insertQuarter();
 	}
 
 	public void ejectQuarter() {
-		this.state.ejectQuarter();
+		state.ejectQuarter();
 	}
 
 	public void turnCrank() {
-		this.state.turnCrank();
-		this.state.dispense();
+		if (state.turnCrank()) {
+			state.dispense();
+		}
 	}
 
 	/**
@@ -86,8 +84,11 @@ public class SuperSugarMachine {
 	}
 
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.MULTI_LINE_STYLE);
-	}
+		StringBuffer toString = new StringBuffer(128);
 
+		toString.append("size=").append(size);
+		toString.append(";");
+		toString.append("state=").append(state);
+		return toString.toString();
+	}
 }

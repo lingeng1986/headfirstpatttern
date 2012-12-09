@@ -2,16 +2,10 @@ package com.lincoln.skills.headfirstpatttern.status;
 
 import java.util.Random;
 
-public class HasQuarterState implements State {
-
-	private SuperSugarMachine machine;
+public class HasQuarterState extends State {
 
 	public HasQuarterState(SuperSugarMachine machine) {
-		this.machine = machine;
-	}
-
-	public void insertQuarter() {
-		System.out.println("you have inserted a quarter.");
+		super(machine);
 	}
 
 	public void ejectQuarter() {
@@ -19,9 +13,10 @@ public class HasQuarterState implements State {
 		System.out.println("a quarter ejected.");
 	}
 
-	public void turnCrank() {
+	public boolean turnCrank() {
 
-		System.out.println("you truned crank.");
+		System.out.println("you just trun crank.");
+
 		Random randomWinner = new Random(System.currentTimeMillis());
 		int winner = randomWinner.nextInt(10);
 		if (winner == 0 && (machine.getSize() > 1)) {
@@ -29,10 +24,7 @@ public class HasQuarterState implements State {
 		} else {
 			machine.setState(machine.getSoldState());
 		}
-	}
-
-	public void dispense() {
-		System.out.println("no sugar dispensed.");
+		return true;
 	}
 
 }

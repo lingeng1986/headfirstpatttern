@@ -1,26 +1,9 @@
 package com.lincoln.skills.headfirstpatttern.status;
 
-public class WinnerState implements State {
-
-	private SuperSugarMachine machine;
+public class WinnerState extends State {
 
 	public WinnerState(SuperSugarMachine machine) {
-		this.machine = machine;
-	}
-
-	public void insertQuarter() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void ejectQuarter() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void turnCrank() {
-		// TODO Auto-generated method stub
-
+		super(machine);
 	}
 
 	public void dispense() {

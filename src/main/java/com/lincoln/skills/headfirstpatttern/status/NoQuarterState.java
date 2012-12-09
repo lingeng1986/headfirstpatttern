@@ -1,24 +1,15 @@
 package com.lincoln.skills.headfirstpatttern.status;
 
-public class NoQuarterState implements State {
-
-	private SuperSugarMachine machine;
+public class NoQuarterState extends State {
 
 	public NoQuarterState(SuperSugarMachine machine) {
-		this.machine = machine;
+		super(machine);
+
 	}
 
 	public void insertQuarter() {
-		System.out.println("you inserted a quarter.");
+		System.out.println("you just insert a quarter.");
 		machine.setState(machine.getHasQuarterState());
-	}
-
-	public void ejectQuarter() {
-		System.out.println("you haven't inserted a quarter.");
-	}
-
-	public void turnCrank() {
-		System.out.println("insert a quarter before turn crank.");
 	}
 
 	public void dispense() {
